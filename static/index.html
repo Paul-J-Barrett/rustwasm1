@@ -7,9 +7,16 @@
   <body>
     <h1>Wasm Experiments</h1>
     <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_wasm">Rust to Wasm -mozilla</a>
-   
+    <a href="https://rustwasm.github.io/docs/book/">rust wasm</a>
+    
+    
+    <div id="ael"></div>
    
     <h3>End of Page</h3>
     <script src="index.js"></script>
+    <script>
+      let el = document.getElementById("ael");
+      el.appendChild("span").textContent(wasm.add2(3,4));
+    </script>
   </body>
 </html>
