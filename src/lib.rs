@@ -1,6 +1,12 @@
 use wasm_bindgen::prelude::*;
 use web_sys::console;
 
+#[wasm_bindgen]
+extern "C" {
+    pub fn alert(s: &str);
+    pub fn confirm(s: &str);
+}
+
 // When the `wee_alloc` feature is enabled, this uses `wee_alloc` as the global
 // allocator.
 //
@@ -16,14 +22,17 @@ pub fn main_js() -> Result<(), JsValue> {
     // It's disabled in release mode so it doesn't bloat up the file size.
     #[cfg(debug_assertions)]
     console_error_panic_hook::set_once();
-
+    let s = &JsValue::from_str(&format!("{}", add2(20, 22).to_string()));
+    //alert(&format!("{}", add(20, 22).to_string()));
+    //confirm(&format!("{}", add2(20, 22).to_string()));
     // Your code goes here!
-    console::log_1(&JsValue::from_str("Hello world!"));
-    console::log_1(&JsValue::from_str(&format!("{}", add(20, 22).to_string())));
+    //console::log_1(&JsValue::from_str("Hello world!"));
+    console::log_1(s);
 
     Ok(())
 }
 
-pub fn add(a: i32, b: i32) -> i32 {
+#[wasm_bindgen]
+pub fn add2(a: i32, b: i32) -> i32 {
     a + b
 }
